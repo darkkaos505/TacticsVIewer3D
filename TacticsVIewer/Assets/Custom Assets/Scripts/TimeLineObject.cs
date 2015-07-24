@@ -139,6 +139,8 @@ public class TimeLineObject : MonoBehaviour
             {
                 currentGhost = Instantiate(ghostPrefab, transform.position, transform.rotation) as GameObject;
                 ghostList.Add(currentGhost);
+
+
             }
             else
             {
@@ -148,9 +150,8 @@ public class TimeLineObject : MonoBehaviour
             }
 
 
-            currentGhost.transform.position = frame.GetPos();
-            currentGhost.transform.rotation = Quaternion.LookRotation(transform.forward) * Quaternion.Euler(frame.GetDir().x, frame.GetDir().y, frame.GetDir().z);
-         
+            Ghost ghost = currentGhost.GetComponent<Ghost>();
+            ghost.Init(frame, this);         
             counter++;
         }
 
@@ -186,5 +187,10 @@ public class TimeLineObject : MonoBehaviour
      movementPath.enabled = false;
  }
 
+
+ public void MovePossistion(Vector3 move)
+ {
+     prevKeyframe.Translate(move);
+ }
 
 }

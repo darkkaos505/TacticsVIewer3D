@@ -4,17 +4,16 @@ using System.Collections;
 public class ObjectAxisMove : MonoBehaviour
 {
 
-    public Transform ObjectToMove;
+ 
 
+   public  Ghost ObjectToMove;
 
     enum MoveStateEnum { stoped , moving };
 
     MoveStateEnum moveState = MoveStateEnum.stoped;
 
-    float horizontalSpeed = 1;
-    float verticalSpeed = 1;
 
-
+      float speed = 0.1f;
     public Vector3 direction = Vector3.forward;
 
     // Use this for initialization
@@ -29,10 +28,22 @@ public class ObjectAxisMove : MonoBehaviour
 
         if (moveState == MoveStateEnum.moving)
         {
-            float h = horizontalSpeed * Input.GetAxis("Mouse X");
-            float v = verticalSpeed * Input.GetAxis("Mouse Y");
+            float h = Input.GetAxis("Mouse X");
+            float v =  Input.GetAxis("Mouse Y");
 
-            ObjectToMove.Translate(direction * h);
+
+            Vector3 dir = transform.root.TransformDirection(direction); 
+
+            Vector3 screenDir = Camera.main.WorldToScreenPoint(dir);
+
+
+            float horzComponet = h * Vector2.Dot(Vector2.right, screenDir);
+            float vertComponet = v * Vector2.Dot(Vector2.up, screenDir);
+
+            float scaler = horzComponet + vertComponet;
+
+            ObjectToMove.MovePossistion( dir * scaler * speed * Time.deltaTime);
+
         }
     }
 

@@ -47,4 +47,10 @@ public class TimelineKeyFrame : IComparable
     {
         return dir;
     }
+
+
+    public void Translate(Vector3 move)
+    {
+        pos += move;
+    }
 }
