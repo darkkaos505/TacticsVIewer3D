@@ -30,8 +30,10 @@ public class Ghost : MonoBehaviour {
     public void MovePossistion(Vector3 move)
     {
         timelineKeyFrame.Translate(move);
-        transform.Translate(move);
+        transform.position = timelineKeyFrame.GetPos();
+
+        TimeLineObject.ShowPath();
     }
 
-    
+ 
 }

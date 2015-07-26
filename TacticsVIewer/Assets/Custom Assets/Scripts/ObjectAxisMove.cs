@@ -34,7 +34,7 @@ public class ObjectAxisMove : MonoBehaviour
 
             Vector3 dir = transform.root.TransformDirection(direction); 
 
-            Vector3 screenDir = Camera.main.WorldToScreenPoint(dir);
+            Vector3 screenDir = -Camera.main.WorldToScreenPoint(dir);
 
 
             float horzComponet = h * Vector2.Dot(Vector2.right, screenDir);

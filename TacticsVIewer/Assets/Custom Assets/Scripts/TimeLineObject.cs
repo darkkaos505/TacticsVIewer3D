@@ -29,7 +29,8 @@ public class TimeLineObject : MonoBehaviour
 
             TimelineKeyFrame frame = new TimelineKeyFrame(t,
                 new Vector3(Random.value * 100, Random.value * 100, Random.value * 100), 
-                new Vector3(Random.value * 360, Random.value * 360, Random.value * 360)  );
+                Vector3.zero);
+             //   new Vector3(Random.value * 360, Random.value * 360, Random.value * 360)  );
 
             keyframeList.Add(frame);
         }
